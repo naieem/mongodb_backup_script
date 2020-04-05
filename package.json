@@ -1,8 +1,18 @@
 {
   "name": "mongo_dump",
   "version": "1.0.0",
-  "description": "",
-  "main": "dump.js",
+  "description": "This repo includes files that is used to take backup of mongodb data and import.",
+  "main": "index.js",
+  "keywords": [
+    "mongodb",
+    "dump",
+    "restore",
+    "export",
+    "import",
+    "date",
+    "datefilter",
+    "mongodatefilter"
+  ],
   "dependencies": {
     "amqplib": "^0.5.5",
     "mongoose": "^5.9.7",
@@ -12,6 +22,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
+  "author": "Naieem Mahmud Supto <naieemsupto@gmail.com>",
   "license": "ISC"
 }
