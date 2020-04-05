@@ -6,7 +6,7 @@ const log = require('./log');
 // var db = "EDB4E319-4CCE-49CE-B877-275C8A8E5568";
 
 // date checking config start
-var fromDate = "2020-02-10T00:00:00.000Z"; // ex: 2020-02-10T00:00:00.000Z"
+var fromDate = "2020-02-10T00:00:00.000Z"; // ex: 2020-02-10T00:00:00.000Z
 // var toDate = "2020-03-25T00:00:00.000Z"; // ex: 2020-02-10T00:00:00.000Z"
 var dateRangeChecker = false;
 // date checking config ends
