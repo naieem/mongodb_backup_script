@@ -30,15 +30,6 @@ dateRangeChecker: true ; // false means you dont want to export from date checki
 ```
 Otherwise all the datas will be exported
 
-### Important Notice
-While exporting huge amount of Data you need to increase your buffer memory that nodejs can use maximum RAM to process huge data.
-
-Inside dump.js adjust the variable value according to your need.Keep it as high as possible.
-```
-var bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size
-It is 2GB now
-```
-
 ### Importing Huge data
 If you want to import huge/large size data,I would recommend using shell script to execute.Inside the repo you will find a shell script named 'import.sh'.That will help to import large data.
 
@@ -50,5 +41,29 @@ db_string='172.16.3.78:27017';
 Here 'base_data_path' means where you have exported your datas.
 
 'db_string' means the new location where you want to import data.
+
+
+### Important Notice
+While exporting huge amount of Data you need to increase your buffer memory that nodejs can use maximum RAM to process huge data.
+
+Inside dump.js adjust the variable value according to your need.Keep it as high as possible.
+```
+var bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size
+It is 2GB now
+```
+
+Also this script is using rabbitmq for better performance. So you have to put two new configuration here.
+
+```
+var connectionInfo = {
+    protocol: "amqp",
+    username: "test",
+    password: "test",
+    hostname: "172.16.0.160"
+};
+var queueName = "supto-test";
+```
+Put your own configuration there and bingo start using this.
+
 
 Thank you all this is all i have got for you.

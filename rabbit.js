@@ -1,7 +1,6 @@
 var amqp = require('amqplib/callback_api');
 var DumpFile = require('./dump');
 const log = require('./log');
-var mongoose = require('mongoose');
 var connectionInfo = {
     protocol: "amqp",
     username: "test",
