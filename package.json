@@ -6,7 +6,6 @@
   "dependencies": {
     "amqplib": "^0.5.5",
     "mongoose": "^5.9.7",
-    "shell-escape": "^0.2.0",
     "simple-node-logger": "^18.12.24"
   },
   "devDependencies": {},
