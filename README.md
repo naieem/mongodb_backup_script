@@ -80,18 +80,5 @@ var bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory siz
 It is 2GB now
 ```
 
-Also this script is using rabbitmq for better performance. So you have to put two new configuration here.
 
-```
-var connectionInfo = {
-    protocol: "amqp",
-    username: "test",
-    password: "test",
-    hostname: "172.16.0.160"
-};
-var queueName = "supto-test";
-```
-Put your own configuration there and bingo start using this.
-
-
-Thank you all this is all i have got for you.
+Thank you all this is all I have got for you.
