@@ -2,6 +2,28 @@
 
 This repo includes files that is used to take backup of mongodb data and import.
 
+## Configuration
+At the beginning you have to configure a config file which contains all the necessary configuration needed to run the script.Let's see how the configuration states.
+
+```
+{
+    ExportDBConnectionString: "172.16.0.13:27017", // from which to export
+    ImportDBConnectionString: "172.16.3.78:27017", // to which to import
+    ExportStoreFolder: "./dump/dump_13_backup", // where to store all files
+    RabbitConfig: {
+        protocol: "amqp",
+        username: "test",
+        password: "test",
+        hostname: "172.16.0.160"
+    },
+    RabbitQueueName: "supto-test", // rabbit queue name
+    IsADateQuery: false, // do you want to export from specific date?
+    FromDateOfDateQuery: "2020-02-10T00:00:00.000Z" // write the date in this format to export from that date.
+}
+NB: Please keep in mind, To export from specific date 'IsADateQuery' configuration must be true and also 'FromDateOfDateQuery' can never be null or undefined;
+
+```
+
 ## Export
 
 To export data, run the command 
