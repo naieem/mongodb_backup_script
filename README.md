@@ -51,10 +51,10 @@ Here the 3rd argument 'import' will be in action to execute import functionality
 
 If you want to export data from an specific date then you have to change some variables,
 
-Inside the dump.js
+Inside the config.js
 ```
-fromDate:2020-02-10T00:00:00.000Z
-dateRangeChecker: true ; // false means you dont want to export from date checking.It will return all the values
+FromDateOfDateQuery:2020-02-10T00:00:00.000Z
+IsADateQuery: true ; // false means you dont want to export from date checking.It will return all the values
 ```
 Otherwise all the datas will be exported
 
