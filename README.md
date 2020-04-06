@@ -6,8 +6,14 @@ This repo includes files that is used to take backup of mongodb data and import.
 
 To export data, run the command 
 ```
+npm run export
+```
+Actually back of this command we will execute,
+
+```
 node index export
 ```
+
 Here the 3rd argument 'export' will be in action to execute export functionality.
 
 NB.If you are not importing huge amount of data then use below configuration.
