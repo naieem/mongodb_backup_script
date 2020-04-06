@@ -11,7 +11,7 @@ const dateRangeChecker = config.IsADateQuery;
 
 const presentDate = new Date();
 // format:_year_month_date_hour_minute
-const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth()+1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
 
 const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
 const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb

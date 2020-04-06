@@ -24,7 +24,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "export": "node index.js export"
   },
   "author": "Naieem Mahmud Supto <naieemsupto@gmail.com>",
   "license": "ISC"
