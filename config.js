@@ -1,7 +1,7 @@
 module.exports = {
     ExportDBConnectionString: "172.16.0.13:27017",
     ImportDBConnectionString: "172.16.3.78:27017",
-    ExportStoreFolder: "dump_13_backup",
+    ExportStoreFolder: "./dump/dump_13_backup",
     RabbitConfig: {
         protocol: "amqp",
         username: "test",

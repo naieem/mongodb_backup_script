@@ -4,7 +4,7 @@ const DumpFile = require('./dump');
 const log = require('./log');
 const connectionInfo = config.RabbitConfig;
 const queueName = config.RabbitQueueName;
-const RabbitChannel;
+var RabbitChannel;
 
 
 module.exports = {
