@@ -1,6 +1,6 @@
 # Mongodb Backup script
 
-This repo includes files that is used to take backup of mongodb data and import.
+This repo includes files that are used to take backup of mongodb data and import.
 
 ## Configuration
 At the beginning you have to configure a config file which contains all the necessary configuration needed to run the script.Let's see how the configuration states.
