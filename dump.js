@@ -9,7 +9,11 @@ const fromDate = config.FromDateOfDateQuery; // ex: 2020-02-10T00:00:00.000Z
 const dateRangeChecker = config.IsADateQuery;
 // date checking config ends
 
-const outputFolder = config.ExportStoreFolder; // output(export) and input (import) dir
+const presentDate = new Date();
+// format:_year_month_date_hour_minute
+const dateOfActions = "_" + presentDate.getFullYear() + "_" + presentDate.getMonth() + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+
+const outputFolder = dateOfActions + config.ExportStoreFolder; // output(export) and input (import) dir
 const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb
 const storeDbConnectionString = config.ImportDBConnectionString; // needed for import
 
