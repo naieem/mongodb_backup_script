@@ -1,14 +1,10 @@
-var amqp = require('amqplib/callback_api');
-var DumpFile = require('./dump');
+const amqp = require('amqplib/callback_api');
+const config = require("./config");
+const DumpFile = require('./dump');
 const log = require('./log');
-var connectionInfo = {
-    protocol: "amqp",
-    username: "test",
-    password: "test",
-    hostname: "172.16.0.160"
-};
-var queueName = "supto-test";
-var RabbitChannel;
+const connectionInfo = config.RabbitConfig;
+const queueName = config.RabbitQueueName;
+const RabbitChannel;
 
 
 module.exports = {

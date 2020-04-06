@@ -1,8 +1,9 @@
-var rabbit = require('./rabbit');
-var log = require('./log');
-var mongoose = require('mongoose')
+const rabbit = require('./rabbit');
+const config=require("./config");
+const log = require('./log');
+const mongoose = require('mongoose')
     , Admin = mongoose.mongo.Admin;
-var connectionString = "172.16.3.216:27017";
+const connectionString = config.ExportDBConnectionString;
 console.log(process.argv[2]);
 rabbit.rabbitInit().then((response) => {
     rabbit.consumerInit(process.argv[2]);

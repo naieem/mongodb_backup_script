@@ -1,4 +1,4 @@
-base_data_path='./216_dump_backup/*'
+base_data_path='./dump_216_backup/*'
 db_string='172.16.3.78:27017';
 for dir in $base_data_path; do
 
@@ -11,4 +11,4 @@ for dir in $base_data_path; do
   done
 
 done
-read -p "script run completed"
+read -p "Script run completed"

@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
 const { exec } = require('child_process');
 const log = require('./log');
-// var collections = [];
-// var connectionString = "172.16.3.216:27017";
-// var db = "EDB4E319-4CCE-49CE-B877-275C8A8E5568";
+const config = require("./config");
 
 // date checking config start
-var fromDate = "2020-02-10T00:00:00.000Z"; // ex: 2020-02-10T00:00:00.000Z
+const fromDate = config.FromDateOfDateQuery; // ex: 2020-02-10T00:00:00.000Z
 // var toDate = "2020-03-25T00:00:00.000Z"; // ex: 2020-02-10T00:00:00.000Z"
-var dateRangeChecker = false;
+const dateRangeChecker = config.IsADateQuery;
 // date checking config ends
 
-var outputFolder = 'dump_213_backup'; // output(export) and input (import) dir
-var bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size
-var storeDbConnectionString = "172.16.3.78:27017"; // needed for import
+const outputFolder = config.ExportStoreFolder; // output(export) and input (import) dir
+const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb
+const storeDbConnectionString = config.ImportDBConnectionString; // needed for import
 
 function dumpDB(connectionString, db) {
   return new Promise((resolve) => {
@@ -22,12 +20,10 @@ function dumpDB(connectionString, db) {
       console.log('Connected to mongo server.');
       //trying to get collection names
       connection.db.listCollections().toArray((err, CollectionInfo) => {
-        // console.log('Total Collection Found ', CollectionInfo.length, ' for Database ', db);
         log.info('Total Collection Found ' + CollectionInfo.length + ' for Database ' + db);
         if (CollectionInfo.length) {
           let counter = 1;
           CollectionInfo.forEach((collections) => {
-            // collections.push(collection.name);
             var collection = collections.name;
             var command = "";
             if (!dateRangeChecker || !fromDate || !toDate) {
@@ -36,7 +32,6 @@ function dumpDB(connectionString, db) {
               command = 'mongodump --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '" --query "{\\"LastUpdateDate\\":{\\"$gte\\": {\\"$date\\":\\"' + fromDate + '\\"},\\"$lte\\":{\\"$date\\":\\"' + toDate + '\\"}}}"';
             }
             exec(command, (err, stdout, stderr) => {
-              // console.log(counter + ' of ' + CollectionInfo.length + ' is running.Collection: ', collection, ' DB: ', db);
               log.info(counter + ' of ' + CollectionInfo.length + ' is running.Collection: ', collection, ' DB: ', db);
               if (err) {
                 console.log(err);
@@ -50,10 +45,8 @@ function dumpDB(connectionString, db) {
               // console.log(`stdout: ${stdout}`);
               // console.log(`stderr: ${stderr}`);
               log.info('Execution Result: ' + JSON.stringify(stderr));
-              // console.log('Finished dumping for ', collection, ' DB: ', db);
               log.info('Finished dumping for ' + collection + ' DB: ' + db);
               if (counter == CollectionInfo.length) {
-                // console.log("Finished dump");
                 log.info('Finished dump');
                 connection.close();
                 resolve({
@@ -67,7 +60,6 @@ function dumpDB(connectionString, db) {
             });
           });
         } else {
-          // console.log('No collectionInfo found');
           log.info('No collectionInfo found');
           mongoose.connection.close();
           resolve({
@@ -114,10 +106,8 @@ function exportDB(connectionString, db) {
               // console.log(`stdout: ${stdout}`);
               // console.log(`stderr: ${stderr}`);
               log.info('Execution Result: ' + JSON.stringify(stderr));
-              // console.log('Finished dumping for ', collection, ' DB: ', db);
               log.info('Finished exporting for ' + collection + ' DB: ' + db);
               if (counter == CollectionInfo.length) {
-                // console.log("Finished dump");
                 connection.close();
                 resolve({
                   status: true,
@@ -130,7 +120,6 @@ function exportDB(connectionString, db) {
             });
           });
         } else {
-          // console.log('No collectionInfo found');
           log.info('No collectionInfo found');
           connection.close();
           resolve({
@@ -202,6 +191,3 @@ module.exports = {
   exportDB: exportDB,
   importDB: importDB
 }
-
-// exportDB(connectionString,db);
-// importDB(connectionString,db)
