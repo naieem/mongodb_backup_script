@@ -8,7 +8,7 @@ module.exports = {
         password: "test",
         hostname: "172.16.0.160"
     },
-    RabbitQueueName: "supto-test",
+    RabbitQueueName: "supto-mongo-dump-test",
     IsADateQuery: false,
     FromDateOfDateQuery: "2020-02-10T00:00:00.000Z"
 }
