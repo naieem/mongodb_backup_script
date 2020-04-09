@@ -22,7 +22,9 @@
     "mongoose": "^5.9.7",
     "simple-node-logger": "^18.12.24"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-cron": "^2.0.3"
+  },
   "scripts": {
     "export": "node index.js export"
   },

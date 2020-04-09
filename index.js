@@ -1,5 +1,6 @@
 const rabbit = require('./rabbit');
 const config = require("./config");
+var cron = require('node-cron');
 const log = require('./log');
 const mongoose = require('mongoose')
     , Admin = mongoose.mongo.Admin;
@@ -33,6 +34,7 @@ function init() {
         }
     });
 }
-setInterval(() => {
+
+cron.schedule('0 1 * * *', () => {
     init();
-}, 1000 * 60 * 60 * 24); // 24 hours interval
+});
