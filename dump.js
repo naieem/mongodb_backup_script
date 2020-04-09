@@ -9,11 +9,11 @@ const fromDate = config.FromDateOfDateQuery; // ex: 2020-02-10T00:00:00.000Z
 const dateRangeChecker = config.IsADateQuery;
 // date checking config ends
 
-const presentDate = new Date();
 // format:_year_month_date_hour_minute
-const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+// const presentDate = new Date();
+// const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+// const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
 
-const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
 const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb
 const storeDbConnectionString = config.ImportDBConnectionString; // needed for import
 
@@ -77,6 +77,11 @@ function dumpDB(connectionString, db) {
 }
 
 function exportDB(connectionString, db) {
+  // format:_year_month_date_hour_minute
+  const presentDate = new Date();
+  const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+  const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
+
   return new Promise((resolve) => {
     var connection = mongoose.createConnection(`mongodb://${connectionString}/${db}`, { useNewUrlParser: true });
     connection.once('open', (ref) => {
