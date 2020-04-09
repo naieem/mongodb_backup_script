@@ -10,12 +10,19 @@ const dateRangeChecker = config.IsADateQuery;
 // date checking config ends
 
 // format:_year_month_date_hour_minute
-// const presentDate = new Date();
-// const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
-// const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
+// var presentDate = new Date();
+// var dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+// var outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
+var outputFolder = "";
 
 const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb
 const storeDbConnectionString = config.ImportDBConnectionString; // needed for import
+
+function setDateOfActions(date) {
+  // format:_year_month_date_hour_minute
+  var dateOfActions = "_" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" + date.getHours() + "_" + date.getMinutes();
+  outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
+}
 
 function dumpDB(connectionString, db) {
   return new Promise((resolve) => {
@@ -198,5 +205,6 @@ function importDB(connectionString, db) {
 module.exports = {
   dumpDB: dumpDB,
   exportDB: exportDB,
-  importDB: importDB
+  importDB: importDB,
+  setActionDate:setDateOfActions
 }

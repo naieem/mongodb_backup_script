@@ -1,4 +1,5 @@
 const rabbit = require('./rabbit');
+const dumpJob = require('./dump');
 const config = require("./config");
 var cron = require('node-cron');
 const log = require('./log');
@@ -10,6 +11,7 @@ function init() {
     log.info('******************************************* New Execution Starts ***************************************');
     log.info('******************************************************************');
     log.info('*******************************************');
+    dumpJob.setActionDate(new Date());
     rabbit.rabbitInit().then((response) => {
         rabbit.consumerInit("export");
         if (response) {
