@@ -85,9 +85,9 @@ function dumpDB(connectionString, db) {
 
 function exportDB(connectionString, db) {
   // format:_year_month_date_hour_minute
-  const presentDate = new Date();
-  const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
-  const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
+  // const presentDate = new Date();
+  // const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
+  // const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
 
   return new Promise((resolve) => {
     var connection = mongoose.createConnection(`mongodb://${connectionString}/${db}`, { useNewUrlParser: true });
