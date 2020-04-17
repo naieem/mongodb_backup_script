@@ -13,22 +13,26 @@ function init() {
     log.info('*******************************************');
     dumpJob.setActionDate(new Date());
     rabbit.rabbitInit().then((response) => {
-        rabbit.consumerInit("export");
         if (response) {
             /// create a connection to the DB    
-            var connection = mongoose.createConnection('mongodb://' + connectionString, { useNewUrlParser: true });
+            let connection = mongoose.createConnection('mongodb://' + connectionString, { useNewUrlParser: true });
             connection.once('open', () => {
                 // connection established
                 new Admin(connection.db).listDatabases((err, result) => {
                     log.info('Total DB Found ' + result.databases.length);
                     // database list stored in result.databases
-                    var allDatabases = result.databases;
+                    let allDatabases = result.databases;
+                    let count = 1;
                     allDatabases.forEach(database => {
-                        // console.log(database.name);
                         rabbit.sendToQueue({
                             db: database.name,
                             connectionString: connectionString
                         });
+                        if (count == allDatabases.length) {
+                            rabbit.consumerInit("export");
+                        } else {
+                            count = count + 1;
+                        }
                     });
                     connection.close();
                 });
