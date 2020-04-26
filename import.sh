@@ -1,5 +1,5 @@
-base_data_path='./dump_216_backup/*'
-db_string='172.16.3.78:27017';
+base_data_path='./dump/dump_10_5_3_21_backup_2020_4_19_1_3/*'
+db_string='10.5.3.67:27017';
 for dir in $base_data_path; do
 
   for file in $dir/*.json; do

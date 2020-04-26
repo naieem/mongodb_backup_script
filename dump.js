@@ -92,6 +92,7 @@ function exportDB(connectionString, db) {
             if (!dateRangeChecker || !fromDate) {
               command = 'mongoexport --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '/' + db + '/' + collection + '.json" --pretty';
             } else {
+              log.info("Date range checker command found");
               // command = 'mongoexport --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '/' + collection + '.json" --pretty --query "{\\"LastUpdateDate\\":{\\"$gte\\": {\\"$date\\":\\"' + fromDate + '\\"},\\"$lte\\":{\\"$date\\":\\"' + toDate + '\\"}}}"';
               command = 'mongoexport --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '/' + db + '/' + collection + '.json" --pretty --query "{\\"$or\\":[{\\"LastUpdateDate\\":{\\"$gte\\":{\\"$date\\":\\"' + fromDate + '\\"}}},{\\"CreateDate\\":{\\"$gte\\":{\\"$date\\":\\"' + fromDate + '\\"}}}]}"';
             }

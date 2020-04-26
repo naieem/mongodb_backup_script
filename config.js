@@ -1,7 +1,7 @@
 module.exports = {
-    ExportDBConnectionString: "172.16.0.13:27017",
-    ImportDBConnectionString: "172.16.3.78:27017",
-    ExportStoreFolder: "./dump/dump_13_backup",
+    ExportDBConnectionString: "10.5.3.21:27017",
+    ImportDBConnectionString: "10.5.3.67:27017",
+    ExportStoreFolder: "./dump/dump_10_5_3_21_backup_from_19_4_12_00",
     RabbitConfig: {
         protocol: "amqp",
         username: "test",
@@ -9,6 +9,6 @@ module.exports = {
         hostname: "172.16.0.160"
     },
     RabbitQueueName: "supto-test",
-    IsADateQuery: false,
-    FromDateOfDateQuery: "2020-02-10T00:00:00.000Z"
+    IsADateQuery: true,
+    FromDateOfDateQuery: "2020-04-19T12:00:00.000Z"
 }

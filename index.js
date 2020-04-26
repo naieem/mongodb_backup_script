@@ -1,12 +1,16 @@
 const rabbit = require('./rabbit');
-const config=require("./config");
+const config = require("./config");
 const log = require('./log');
 const mongoose = require('mongoose')
     , Admin = mongoose.mongo.Admin;
-const connectionString = config.ExportDBConnectionString;
+const connectionString = "mongodb://10.5.3.67:27017,10.5.3.239:27017,10.5.3.227:27017/?replicaSet=rs0&readPreference=primaryPreferred";
 console.log(process.argv[2]);
+// var connection = mongoose.createConnection(connectionString, { useNewUrlParser: true });
+// connection.once('open', () => {
+//     // connection established
+//     console.log("connectiond");
+// });
 rabbit.rabbitInit().then((response) => {
-    rabbit.consumerInit(process.argv[2]);
     if (response) {
         /// create a connection to the DB    
         var connection = mongoose.createConnection('mongodb://' + connectionString, { useNewUrlParser: true });
@@ -25,6 +29,7 @@ rabbit.rabbitInit().then((response) => {
                     });
                 });
                 connection.close();
+                rabbit.consumerInit(process.argv[2]);
             });
         });
     }
