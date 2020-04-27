@@ -2,12 +2,13 @@ const rabbit = require('./rabbit');
 const dumpJob = require('./dump');
 const config = require("./config");
 var cron = require('node-cron');
-const log = require('./log');
+const logs = require('./log');
 const mongoose = require('mongoose')
     , Admin = mongoose.mongo.Admin;
 const connectionString = config.ExportDBConnectionString;
 // console.log(process.argv[2]);
 function init() {
+    global.log = logs.initialize();
     log.info('******************************************* New Execution Starts ***************************************');
     log.info('******************************************************************');
     log.info('*******************************************');
@@ -40,7 +41,6 @@ function init() {
         }
     });
 }
-
 cron.schedule('0 1 * * *', () => {
     init();
 });
