@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { exec } = require('child_process');
-const log = require('./log');
+// const log = require('./log');
 const config = require("./config");
 
 // date checking config start

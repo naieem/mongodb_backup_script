@@ -1,7 +1,7 @@
 const amqp = require('amqplib/callback_api');
 const config = require("./config");
 const DumpFile = require('./dump');
-const log = require('./log');
+// const log = require('./log');
 const connectionInfo = config.RabbitConfig;
 const queueName = config.RabbitQueueName;
 var RabbitChannel;
