@@ -14,7 +14,7 @@ const presentDate = new Date();
 const dateOfActions = "_" + presentDate.getFullYear() + "_" + (presentDate.getMonth() + 1) + "_" + presentDate.getDate() + "_" + presentDate.getHours() + "_" + presentDate.getMinutes();
 
 const outputFolder = config.ExportStoreFolder + dateOfActions; // output(export) and input (import) dir
-const bufferConfig = { maxBuffer: 1024 * 1024 * 2048 }; // increase ram memory size 2gb
+const bufferConfig = { maxBuffer: 1024 * 1024 * 4096 }; // increase ram memory size 4gb
 const storeDbConnectionString = config.ImportDBConnectionString; // needed for import
 
 function dumpDB(connectionString, db) {
