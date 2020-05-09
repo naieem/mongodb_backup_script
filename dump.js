@@ -96,10 +96,10 @@ function exportDB(connectionString, db) {
               // command = 'mongoexport --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '/' + collection + '.json" --pretty --query "{\\"LastUpdateDate\\":{\\"$gte\\": {\\"$date\\":\\"' + fromDate + '\\"},\\"$lte\\":{\\"$date\\":\\"' + toDate + '\\"}}}"';
               command = 'mongoexport --host="' + connectionString + '" --db="' + db + '" --collection="' + collection + '" --out="' + outputFolder + '/' + db + '/' + collection + '.json" --pretty --query "{\\"$or\\":[{\\"LastUpdateDate\\":{\\"$gte\\":{\\"$date\\":\\"' + fromDate + '\\"}}},{\\"CreateDate\\":{\\"$gte\\":{\\"$date\\":\\"' + fromDate + '\\"}}}]}"';
             }
-            log.info("============================================ Execution starts =========================================");
-            log.info(counter + ' of ' + CollectionInfo.length + ' is running.Collection: ', collection, ' DB: ', db);
             exec(command, bufferConfig, (err, stdout, stderr) => {
               // console.log(counter + ' of ' + CollectionInfo.length + ' is running.Collection: ', collection, ' DB: ', db);
+              log.info("============================================ Execution starts =========================================");
+              log.info(counter + ' of ' + CollectionInfo.length + ' is running.Collection: ', collection, ' DB: ', db);
               if (err) {
                 console.log(err);
                 resolve({
